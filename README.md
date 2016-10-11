@@ -26,3 +26,16 @@ Adpated from https://github.com/NotMyself/GildedRose
 
 ### Rules not yet implemented:
 - "Conjured" items degrade in quality twice as fast as normal items
+
+## Testing
+
+### Command Line (recommended)
+
+```
+$ npm install
+$ npm test
+```
+
+### Browser
+
+Open `SpecRunner.html`
