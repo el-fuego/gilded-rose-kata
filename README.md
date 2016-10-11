@@ -1,6 +1,6 @@
 # Gilded Rose
 
-Originally created by Terry Hughes (http://twitter.com/#!/TerryHughes). This is a [fork of the JavaScript translation](https://github.com/emilybache/GildedRose-Refactoring-Kata/tree/master/js), with an updated version Jasmine and styled UI.
+Originally created by Terry Hughes (http://twitter.com/#!/TerryHughes). This is a [fork of the JavaScript translation](https://github.com/emilybache/GildedRose-Refactoring-Kata/tree/master/js), with an updated version of Jasmine and styled UI.
 
 ## Getting Started
 
