@@ -5,8 +5,9 @@
   <title>Gilded Rose Kata</title>
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
+
   <script type="text/javascript" src="src/gilded_rose.js"></script>
 
   <script type="text/javascript">
@@ -24,26 +25,24 @@
       // this conjured item does not work properly yet
       items.push(new Item('Conjured Mana Cake', 3, 6));
 
-      var days = 2;
+      var DAYS = 2;
+      var TEMPLATE_SOURCE = $("#inventory_template").html();
+      var template = Handlebars.compile(TEMPLATE_SOURCE);
 
-      for (var i = 0; i < days; i++) {
-        showHeaderFor(i);
-        showItemsFor(i);
+      for (var i = 0; i < DAYS; i++) {
+        showItemsForDay(i);
         update_quality();
       }
 
-      function showHeaderFor(day) {
-        $('main').append('<h3>Day ' + day + '</h3>');
-      }
+      function showItemsForDay(day) {
+        var html = template(
+          {
+            items: items,
+            day: day
+          }
+        );
 
-      function showItemsFor(day) {
-        $('main').append('<p>name, sellIn, quality</p>');
-        for (var j = 0; j < items.length; j++) {
-          var item = items[j];
-          $('main').append('<p>' + item.name + ', ' + item.sell_in + ', ' + item.quality + '</p>');
-        }
-        $('main').append('<pre>' + JSON.stringify(items) + '</pre>');
-        $('main').append('<hr />');
+        $('main').append(html);
       }
 
     });
@@ -59,6 +58,28 @@
     </header>
     <main class="container">
       <h2>Inventory</h2>
+
     </main>
+
+    <script id="inventory_template" type="text/x-handlebars-template">
+      <h3>Day {{day}}</h3>
+      <table class="table table-striped">
+        <thead>
+          <th>Name</th>
+          <th>Sell In</th>
+          <th>Quality</th>
+        </thead>
+        <tbody>
+          {{#each items}}
+          <tr>
+            <td>{{name}}</td>
+            <td>{{sell_in}}</td>
+            <td>{{quality}}</td>
+          </tr>
+          {{/each}}
+        <tbody>
+      </table>
+      <hr>
+    </script>
   </body>
 </html>
