@@ -13,6 +13,14 @@
   <script type="text/javascript">
     $( document ).ready(function() {
 
+      Handlebars.registerHelper('json', function(context) {
+        return JSON.stringify(context);
+      });
+
+      var DAYS = 2;
+      var TEMPLATE_SOURCE = $("#inventory_template").html();
+      var template = Handlebars.compile(TEMPLATE_SOURCE);
+
       items.push(new Item('+5 Dexterity Vest', 10, 20));
       items.push(new Item('Aged Brie', 2, 0));
       items.push(new Item('Elixir of the Mongoose', 5, 7));
@@ -24,10 +32,6 @@
       items.push(new Item('Backstage passes to a TAFKAL80ETC concert', 5, 46));
       // this conjured item does not work properly yet
       items.push(new Item('Conjured Mana Cake', 3, 6));
-
-      var DAYS = 2;
-      var TEMPLATE_SOURCE = $("#inventory_template").html();
-      var template = Handlebars.compile(TEMPLATE_SOURCE);
 
       for (var i = 0; i < DAYS; i++) {
         showItemsForDay(i);
@@ -44,7 +48,6 @@
 
         $('main').append(html);
       }
-
     });
   </script>
 </head>
@@ -58,7 +61,6 @@
     </header>
     <main class="container">
       <h2>Inventory</h2>
-
     </main>
 
     <script id="inventory_template" type="text/x-handlebars-template">
