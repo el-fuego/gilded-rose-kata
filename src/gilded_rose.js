@@ -4,7 +4,7 @@ function Item(name, sell_in, quality) {
   this.quality = quality;
 }
 
-const items = []
+var items = []
 
 const risePriceItems = [
   'Aged Brie',
@@ -91,12 +91,13 @@ function updateQuality() {
 
     decreaseSellIn(item)
 
-    if (items[i].sell_in < 0) {
-      if (isRisePriceItem) {
-        setQuality(item, item.quality + 1)
-      } else {
-        setQuality(item, item.quality - 1)
-      }
+    //a little bit confusing, since it's not said the the quality of risePrise items
+    // grow 2 times faster when their sell_in value is smaller than 0
+    // This rule relates only to descreasing(according to TechSpecs)
+    if (sellInLessThanZero(sellIn)) {
+      isRisePriceItem 
+        ? setQuality(item, item.quality + 1) 
+        : setQuality(item, item.quality - 1)
     }
   })
 }
